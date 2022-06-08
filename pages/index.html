@@ -1,0 +1,1650 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Essay Writer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        html:before {
+            content: "";
+            width: 0;
+            height: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            background-color: rgba(50, 50, 50, 0);
+            z-index: 2
+        }
+
+        @media (min-width:768px) {
+            html:before {
+                display: block
+            }
+        }
+
+        @media (min-width:1024px) {
+            html:before {
+                display: none
+            }
+        }
+
+        .Header {
+            position: relative;
+            top: 0;
+            right: 0;
+            left: 0;
+            padding: 0 16px;
+            background-color: #fff;
+            -webkit-box-shadow: 0 10px 30px rgba(13, 36, 54, .15);
+            box-shadow: 0 10px 30px rgba(13, 36, 54, .15);
+            z-index: 5
+        }
+
+        @media (min-width:1024px) {
+            .Header {
+                background-color: transparent;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                padding: 0 24px
+            }
+        }
+
+        .Header__container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 16px 0
+        }
+
+        @media (min-width:1024px) {
+            .Header__container {
+                padding-top: 46px
+            }
+        }
+
+        .Header__logo {
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: end;
+            -ms-flex-align: end;
+            align-items: flex-end;
+            vertical-align: top;
+            line-height: 1
+        }
+
+        @media (min-width:1024px) {
+            .Header__logo {
+                width: 270px;
+                height: 36px
+            }
+        }
+
+        .Header__logo img {
+            display: inline-block;
+            vertical-align: top
+        }
+
+        .Header__logo__feather {
+            width: auto;
+            height: 22px;
+            margin-right: 4px
+        }
+
+        @media (min-width:1024px) {
+            .Header__logo__feather {
+                height: 57px;
+                margin-right: 6px
+            }
+        }
+
+        .Header__logo__text {
+            width: auto;
+            height: 22px
+        }
+
+        @media (min-width:1024px) {
+            .Header__logo__text {
+                height: 36px
+            }
+        }
+
+        .Header__burger {
+            position: relative;
+            width: 24px;
+            height: 36px;
+            background: none;
+            border: 0;
+            margin-left: 16px;
+            cursor: pointer;
+            z-index: 2
+        }
+
+        @media (min-width:1024px) {
+            .Header__burger {
+                display: none
+            }
+        }
+
+        .Header__burger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #323232;
+            border-radius: 3px;
+            will-change: transform
+        }
+
+        .Header__burger span:first-child {
+            -webkit-transform: translateY(-6px);
+            transform: translateY(-6px)
+        }
+
+        .Header__burger span:last-child {
+            -webkit-transform: translateY(6px);
+            transform: translateY(6px)
+        }
+
+        .Header__user-box {
+            margin-left: auto
+        }
+
+        @media (min-width:1024px) {
+            .Header__user-box {
+                height: 36px;
+                text-align: right;
+                margin-left: 2vw;
+                -webkit-box-ordinal-group: 2;
+                -ms-flex-order: 1;
+                order: 1
+            }
+        }
+
+        .Header__user-box__link-dashboard {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            width: 36px;
+            height: 36px;
+            text-indent: 36px;
+            white-space: nowrap;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: auto;
+            -webkit-box-shadow: inset 0 0 0 2px #d1d5dc;
+            box-shadow: inset 0 0 0 2px #d1d5dc
+        }
+
+        @media (min-width:1024px) {
+            .Header__user-box__link-dashboard {
+                width: auto;
+                height: auto;
+                text-indent: 0;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 140%;
+                text-decoration: none;
+                border-radius: 0;
+                padding: 9px 0 9px 24px;
+                color: #323232;
+                -webkit-box-shadow: none;
+                box-shadow: none
+            }
+        }
+
+        .Header__user-box__link-dashboard:before {
+            content: "";
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url(/redesign/icons/ico-header-user.svg) 50% no-repeat;
+            background-size: 12px 14px;
+            margin: auto
+        }
+
+        @media (min-width:1024px) {
+            .Header__user-box__link-dashboard:before {
+                width: 18px;
+                height: 18px;
+                right: auto;
+                background-size: 15px 18px
+            }
+        }
+
+        @media (min-width:1024px) {
+            .page-wrapper:not(.page-wrapper__white-theme) .Header__user-box__link-dashboard {
+                color: #fff
+            }
+        }
+
+        .Header__user-box__link-order.btn.btn--small {
+            display: none
+        }
+
+        @media (min-width:1024px) {
+            .Header__user-box__link-order.btn.btn--small {
+                display: inline-block;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 140%;
+                letter-spacing: 0;
+                padding: 8px 16px;
+                margin-left: 2vw;
+                border-color: #1f7973;
+                color: #323232
+            }
+        }
+
+        @media (min-width:1024px) {
+            .page-wrapper:not(.page-wrapper__white-theme) .Header__user-box__link-order.btn.btn--small {
+                border-color: #fff;
+                color: #fff
+            }
+        }
+
+        .Header__menu {
+            position: fixed;
+            top: 68px;
+            right: -100%;
+            bottom: 0;
+            visibility: hidden;
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+            width: 100%;
+            background-color: #fff;
+            -webkit-box-shadow: inset 0 40px 30px -30px rgba(13, 36, 54, .15);
+            box-shadow: inset 0 40px 30px -30px rgba(13, 36, 54, .15);
+            padding: 24px 12px;
+            overflow-y: auto;
+            will-change: transform;
+            z-index: 1
+        }
+
+        @media (min-width:768px) {
+            .Header__menu {
+                width: 350px;
+                right: -350px
+            }
+        }
+
+        @media (min-width:1024px) {
+            .Header__menu {
+                position: static;
+                background-color: transparent;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                visibility: visible;
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                overflow: visible;
+                width: auto;
+                margin-left: auto;
+                padding: 0
+            }
+        }
+
+        .Header__menu-list {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            height: 100%;
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        @media (min-width:1024px) {
+            .Header__menu-list {
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                flex-direction: row;
+                height: auto
+            }
+        }
+
+        .Header__menu-list-item {
+            width: 100%;
+            padding: 16px 0
+        }
+
+        @media (min-width:1024px) {
+            .Header__menu-list-item {
+                width: auto;
+                padding: 0
+            }
+        }
+
+        .Header__menu-list-item+.Header__menu-list-item:not(.Header__menu-order-block) {
+            border-top: 1px solid #d1d5dc
+        }
+
+        @media (min-width:1024px) {
+            .Header__menu-list-item+.Header__menu-list-item:not(.Header__menu-order-block) {
+                border-top: 0;
+                margin-left: 2vw
+            }
+        }
+
+        .Header__menu-list-item>a:not(.btn):not(.Header__menu-order-block__phone) {
+            display: block;
+            position: relative;
+            font-size: 14px;
+            color: #323232;
+            text-decoration: none;
+            white-space: nowrap
+        }
+
+        @media (min-width:1024px) {
+            .Header__menu-list-item>a:not(.btn):not(.Header__menu-order-block__phone) {
+                display: inline
+            }
+        }
+
+        @media (min-width:1024px) {
+            .page-wrapper:not(.page-wrapper__white-theme) .Header__menu-list-item>a:not(.btn):not(.Header__menu-order-block__phone) {
+                color: #fff
+            }
+        }
+
+        .Header__menu-order-block {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            margin-top: auto;
+            padding: 20px 0 8px;
+            text-align: center;
+            min-height: 127px
+        }
+
+        @media (min-width:1024px) {
+            .Header__menu-order-block {
+                display: none
+            }
+        }
+
+        .Header__menu-order-block__phone {
+            display: inline-block;
+            position: relative;
+            font-size: 16px;
+            line-height: 24px;
+            color: #323232;
+            margin-bottom: 24px
+        }
+
+        @media (min-width:360px) {
+            .Header__menu-order-block__phone {
+                padding-left: 40px
+            }
+
+            .Header__menu-order-block__phone:after {
+                content: "";
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                background: #f9f9f9 url(/redesign/icons/ico-header-phone.svg) 50% no-repeat;
+                background-size: 12px 12px;
+                border-radius: 50%
+            }
+        }
+
+        .Header__menu-order-block__phone a {
+            white-space: nowrap;
+            margin: 0 4px
+        }
+
+        .Header__submenu-label {
+            position: relative;
+            display: block;
+            padding-right: 16px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #323232
+        }
+
+        @media (min-width:1024px) {
+            .Header__submenu-label {
+                display: inline-block
+            }
+        }
+
+        .Header__submenu-label:before {
+            content: "";
+            width: 9px;
+            height: 7px;
+            position: absolute;
+            top: 2px;
+            right: 0;
+            bottom: 0;
+            border-left: 6px solid #323232;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            margin: auto
+        }
+
+        @media (min-width:1024px) {
+            .Header__submenu-label:before {
+                height: 9px;
+                top: -2px;
+                border-color: #323232;
+                border-style: solid;
+                border-width: 0 1px 1px 0;
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg)
+            }
+        }
+
+        @media (min-width:1024px) {
+            .page-wrapper:not(.page-wrapper__white-theme) .Header__submenu-label {
+                color: #fff
+            }
+        }
+
+        @media (min-width:1024px) {
+            .page-wrapper:not(.page-wrapper__white-theme) .Header__submenu-label:before {
+                border-color: #fff
+            }
+        }
+
+        .Header__submenu-container {
+            position: relative;
+            padding-bottom: 0
+        }
+
+        @media (min-width:1024px) {
+            .Header__submenu-container {
+                margin-bottom: -36px;
+                padding-bottom: 36px
+            }
+        }
+
+        .Header__submenu-container .Header__submenu {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding: 16px 16px 0 36px;
+            max-height: 0;
+            overflow: hidden
+        }
+
+        @media (min-width:1024px) {
+            .Header__submenu-container .Header__submenu {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                margin: 0;
+                padding: 32px 24px 16px;
+                width: 170px;
+                max-height: none;
+                overflow: inherit;
+                opacity: 0;
+                -webkit-transform: translateY(30px);
+                transform: translateY(30px);
+                pointer-events: none
+            }
+
+            .Header__submenu-container .Header__submenu:before {
+                content: "";
+                position: absolute;
+                top: 11px;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: #fff;
+                -webkit-box-shadow: 0 10px 30px rgba(13, 36, 54, .15);
+                box-shadow: 0 10px 30px rgba(13, 36, 54, .15)
+            }
+
+            .Header__submenu-container .Header__submenu:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                top: 1px;
+                right: 0;
+                border-right: 10px solid #fff;
+                border-top: 10px solid transparent
+            }
+        }
+
+        @media (min-width:1024px) {
+            .Header__submenu-container .Header__submenu__columns {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-column-gap: 16px;
+                -webkit-column-gap: 16px;
+                -moz-column-gap: 16px;
+                column-gap: 16px;
+                width: 480px
+            }
+        }
+
+        .Header__submenu-container .Header__submenu .Header__menu-list-item {
+            position: relative;
+            width: 100%;
+            padding: 8px 0
+        }
+
+        @media (min-width:1024px) {
+            .Header__submenu-container .Header__submenu .Header__menu-list-item {
+                margin-bottom: 12px;
+                padding: 0
+            }
+        }
+
+        .Header__submenu-container .Header__submenu .Header__menu-list-item+.Header__menu-list-item {
+            margin-top: 0;
+            border: 0
+        }
+
+        @media (min-width:1024px) {
+            .Header__submenu-container .Header__submenu .Header__menu-list-item+.Header__menu-list-item {
+                margin-top: 0;
+                margin-left: 0
+            }
+        }
+
+        .Header__submenu-container .Header__submenu .Header__menu-list-item>a {
+            position: relative;
+            font-size: 14px;
+            color: #323232;
+            text-decoration: none
+        }
+
+        .page-wrapper:not(.page-wrapper__white-theme) .Header__submenu-container .Header__submenu .Header__menu-list-item>a {
+            color: #323232
+        }
+
+        .Calc--hidden {
+            display: none
+        }
+
+        .Calc__cell--academic-level-mobile .Calc__academic-level--active-deadline {
+            display: block
+        }
+
+        @media (min-width:1024px) {
+            .Calc__cell--academic-level-mobile .Calc__academic-level--active-deadline {
+                display: none
+            }
+        }
+
+        .Calc__tip:empty {
+            display: none
+        }
+
+        .Calc__tip:not(:empty) {
+            font-size: 16px;
+            line-height: 170%;
+            text-align: center;
+            margin-bottom: 15px
+        }
+
+        @media (min-width:1024px) {
+            .Calc__tip:not(:empty) {
+                text-align: left;
+                width: 100%
+            }
+        }
+
+        .Calc__tip:not(:empty)[data-tip-discount] {
+            -webkit-box-ordinal-group: 0;
+            -ms-flex-order: -1;
+            order: -1
+        }
+
+        @font-face {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap
+        }
+
+        *,
+        :after,
+        :before {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            box-sizing: border-box
+        }
+
+        body,
+        html {
+            -webkit-tap-highlight-color: transparent;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            min-height: 100vh
+        }
+
+        body {
+            background-color: #fff;
+            font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            color: #595959;
+            font-size: 16px;
+            line-height: 160%;
+            font-weight: 400;
+            word-wrap: break-word;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility
+        }
+
+        img {
+            height: auto
+        }
+
+        iframe,
+        img {
+            max-width: 100%
+        }
+
+        .page-wrapper {
+            position: relative
+        }
+
+        .section {
+            padding-left: 16px;
+            padding-right: 16px
+        }
+
+        @media (min-width:1024px) {
+            .section {
+                padding-left: 24px;
+                padding-right: 24px
+            }
+        }
+
+        .container {
+            width: 100%
+        }
+
+        @media (min-width:1024px) {
+            .container {
+                max-width: 1170px;
+                margin-left: auto;
+                margin-right: auto
+            }
+        }
+
+        h1 {
+            font-size: 28px;
+            line-height: 130%;
+            font-weight: 900
+        }
+
+        @media (min-width:1024px) {
+            h1 {
+                font-size: 60px;
+                line-height: 120%
+            }
+        }
+
+        h2 {
+            font-size: 28px;
+            line-height: 130%;
+            font-weight: 600
+        }
+
+        @media (min-width:1024px) {
+            h2 {
+                font-size: 40px;
+                line-height: 140%
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            text-decoration: none;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 120%;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            border: 0;
+            padding: 15px 24px
+        }
+
+        @media (min-width:768px) {
+            .btn {
+                padding: 15px 32px
+            }
+        }
+
+        .btn--green-fill {
+            background-color: #1f7973;
+            color: #fff
+        }
+
+        .btn--with-arrow {
+            padding-right: 52px
+        }
+
+        @media (min-width:768px) {
+            .btn--with-arrow {
+                padding-right: 60px
+            }
+        }
+
+        .btn--with-arrow:before {
+            content: "";
+            width: 12px;
+            height: 13px;
+            position: absolute;
+            top: 0;
+            right: 24px;
+            bottom: 0;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin: auto
+        }
+
+        @media (min-width:768px) {
+            .btn--with-arrow:before {
+                right: 32px
+            }
+        }
+
+        .btn--small {
+            font-size: 15px;
+            padding: 8px 24px
+        }
+
+        select {
+            font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none
+        }
+
+        select::-ms-expand {
+            display: none
+        }
+
+        a {
+            color: #1f7973
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .link--white {
+            color: #fff
+        }
+
+        .list--clean {
+            list-style: none;
+            padding: 0;
+            margin: 0
+        }
+
+        p {
+            margin-bottom: 1em
+        }
+
+        .hidden-info:after {
+            content: attr(data-title)
+        }
+
+        .section-hero-home {
+            background-color: #323232;
+            -webkit-box-shadow: 0 -140px 0 #323232;
+            box-shadow: 0 -140px 0 #323232;
+            padding-top: 60px;
+            padding-bottom: 100px
+        }
+
+        @media (min-width:768px) {
+            .section-hero-home {
+                padding-top: 0;
+                padding-bottom: 55px;
+                overflow: hidden
+            }
+        }
+
+        @media (min-width:768px) {
+            .section-hero-home .container {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: start;
+                -ms-flex-align: start;
+                align-items: flex-start
+            }
+        }
+
+        .section-hero-home__content {
+            color: #fff
+        }
+
+        @media (min-width:768px) {
+            .section-hero-home__content {
+                position: relative;
+                width: 50%;
+                z-index: 1;
+                margin-top: 12vh
+            }
+        }
+
+        .section-hero-home__content .section__title {
+            margin-bottom: 32px
+        }
+
+        @media (min-width:1024px) {
+            .section-hero-home__content .section__title {
+                font-size: 58px;
+                margin-bottom: 40px
+            }
+        }
+
+        @media (min-width:1200px) {
+            .section-hero-home__content .section__title {
+                font-size: 60px
+            }
+        }
+
+        .section-hero-home__content .section__subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 40px
+        }
+
+        @media (min-width:1024px) {
+            .section-hero-home__content .section__subtitle {
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 150%;
+                max-width: 510px;
+                margin-bottom: 60px
+            }
+        }
+
+        .section-hero-home__content .section__buttons {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+        .section-hero-home__content .section__buttons a {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px
+        }
+
+        .section-hero-home__content .section__buttons a+a {
+            white-space: nowrap;
+            margin-left: 20px
+        }
+
+        @media (min-width:350px) {
+            .section-hero-home__content .section__buttons a+a {
+                margin-left: 32px
+            }
+        }
+
+        @media (min-width:1024px) {
+            .section-hero-home__content .section__buttons a+a {
+                margin-left: 48px
+            }
+        }
+
+        .section-hero-home__img {
+            display: none
+        }
+
+        @media (min-width:768px) {
+            .section-hero-home__img {
+                position: relative;
+                display: block;
+                width: 50%;
+                z-index: 0
+            }
+
+            .section-hero-home__img:before {
+                content: "";
+                width: 655px;
+                height: 1300px;
+                background-color: #1f7973;
+                border-radius: 242px 242px 0 0;
+                -webkit-transform: rotate(-30deg);
+                transform: rotate(-30deg);
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 60%
+            }
+
+            .section-hero-home__img picture {
+                position: relative
+            }
+        }
+
+        @media (min-width:1024px) {
+            .section-hero-home__img:before {
+                width: 655px;
+                height: 1300px;
+                border-radius: 327px 327px 0 0;
+                left: 50%;
+                -webkit-transform: rotate(-40deg);
+                transform: rotate(-40deg)
+            }
+        }
+
+        @media (min-width:1200px) {
+            .section-hero-home__img:before {
+                left: 35%
+            }
+        }
+
+        .section-calculator {
+            margin-top: -40px;
+            padding-bottom: 40px
+        }
+
+        @media (min-width:768px) {
+            .section-calculator {
+                margin-top: -75px
+            }
+        }
+
+        @media (min-width:1024px) {
+            .section-calculator {
+                margin-top: -135px;
+                padding-bottom: 120px
+            }
+        }
+
+        .section-calculator__heading {
+            color: #323232;
+            margin-bottom: 12px
+        }
+
+        @media (min-width:1024px) {
+            .section-calculator__heading {
+                margin-bottom: 16px
+            }
+        }
+
+        .section-calculator__subheading {
+            font-weight: 600;
+            line-height: 150%;
+            color: #595959
+        }
+
+        @media (min-width:1024px) {
+            .section-calculator__subheading {
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 150%
+            }
+        }
+
+        .section-calculator__calculator {
+            position: relative;
+            background-color: #fff;
+            -webkit-box-shadow: 0 10px 30px rgba(13, 36, 54, .15);
+            box-shadow: 0 10px 30px rgba(13, 36, 54, .15);
+            padding: 32px 24px;
+            z-index: 1
+        }
+
+        @media (min-width:768px) {
+            .section-calculator__calculator {
+                padding: 70px 50px
+            }
+        }
+
+        @media (min-width:1024px) {
+            .section-calculator__calculator {
+                padding: 95px 100px
+            }
+        }
+
+        .sample {
+            display: none;
+            position: relative;
+            background-color: #fff;
+            -webkit-box-shadow: 0 15px 40px rgba(21, 37, 72, .08);
+            box-shadow: 0 15px 40px rgba(21, 37, 72, .08);
+            padding: 56px 22px
+        }
+
+        @media (min-width:1024px) {
+            .sample {
+                padding: 75px 80px 64px
+            }
+        }
+
+        .sample:before {
+            content: "";
+            width: 56px;
+            height: 56px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(45deg, #e9f2f1, #e9f2f1 50%, #f4f5f5 0, #f9f9f9 60%, #f9f9f9);
+            -webkit-box-shadow: 0 -30px 10px #f9f9f9, 30px 0 10px #f9f9f9;
+            box-shadow: 0 -30px 10px #f9f9f9, 30px 0 10px #f9f9f9
+        }
+
+        @media (min-width:1024px) {
+            .sample:before {
+                width: 104px;
+                height: 104px;
+                -webkit-box-shadow: 0 -40px 10px #f9f9f9, 40px 0 10px #f9f9f9;
+                box-shadow: 0 -40px 10px #f9f9f9, 40px 0 10px #f9f9f9
+            }
+        }
+
+        .sample__title {
+            margin-bottom: 24px
+        }
+
+        .sample__title:before {
+            content: "Title:";
+            display: block;
+            opacity: .6
+        }
+
+        .sample__type {
+            margin-bottom: 36px
+        }
+
+        .sample__type:before {
+            content: "Paper type:";
+            opacity: .6;
+            margin-right: 4px
+        }
+
+        .sample__link {
+            margin-top: 48px;
+            text-align: center
+        }
+
+        .sample__link .btn {
+            position: relative;
+            font-size: 17px;
+            font-weight: 600;
+            padding-right: 70px
+        }
+
+        .sample__link .btn:before {
+            content: "";
+            width: 28px;
+            height: 28px;
+            position: absolute;
+            top: 0;
+            right: 35px;
+            bottom: 0;
+            background: 50% no-repeat;
+            background-size: contain;
+            margin: auto
+        }
+    </style>
+    <link href="assets/css/home-preload.css" rel="preload" as="style" media="all" onload="this.rel='stylesheet'" />
+    <link href="assets/css/home-preload1.css" rel="preload" as="style" media="all" onload="this.rel='stylesheet'" />
+    <link href="assets/css/home-preload2.css" rel="preload" as="style" media="all" onload="this.rel='stylesheet'" />
+    <link href="assets/css/home-preload3.css" rel="preload" as="style" media="all" onload="this.rel='stylesheet'" />
+    <script>
+        window.dataLayer = window.dataLayer || []; dataLayer.push({ 'event': 'funnel-anonymous' }); document.addEventListener('DOMContentLoaded', function () {
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        '//www.googletagmanager.com/gtm.js?id=' + i + dl + ''; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-NMRCG2N');
+        });
+        window['GoogleAnalyticsObject'] = 'ga';
+        window['ga'] = window['ga'] || function () {
+            (window['ga'].q = window['ga'].q || []).push(arguments)
+        };
+    </script>
+    <script>
+        var pageConfig = {};
+        var product_id = null;
+        function checkSupport() { var e = document.documentElement, o = new Image; o.onload = o.onerror = function () { isSupported = 2 === o.height, isSupported || e.classList.add("no-webp") }, o.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA" } checkSupport();
+    </script>
+</head>
+
+<body>
+    <div data-notify-widget class="NotifyWidget--popup"></div>
+    <div data-exit-popup-js></div>
+    <div class="page-wrapper ">
+        <!-- HEADER -->
+
+        <header class="Header">
+            <div class="container">
+                <div class="Header__container">
+                    <a class="Header__logo" href="/">The <span>CREED PAPERS</span></a>
+                    <div class="Header__user-box">
+                        <a class="btn btn--green-fill btn--small Header__user-box__link-order" rel="nofollow"
+                            href="/order.html">
+                            Order Paper
+                            <span></span><span></span><span></span><span></span>
+                        </a>
+                    </div>
+                    <button class="Header__burger" type="button" aria-label="toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <nav class="Header__menu">
+                        <ul class="Header__menu-list list--clean">
+                            <li class="Header__menu-list-item"><a href="/pricing.html">Pricing</a></li>
+                            <li class="Header__menu-list-item"><a href="/testimonials.html">Testimonials</a></li>
+                            <li class="Header__menu-list-item"><a href="/our-writers.html">Our writers</a></li>
+                            <li class="Header__menu-list-item Header__submenu-container">
+                                <span class="Header__submenu-label">Services</span>
+                                <ul class="Header__submenu Header__submenu__columns list--clean">
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Research paper writing service</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Speech writing services</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Dissertation writing services</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Assignment writing service</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Custom essay writing</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Write my essay</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Buy essay</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Write my review</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Thesis writing service</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Lab report writing service</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Do my homework</a>
+                                    </li>
+                                    <li class="Header__menu-list-item">
+                                        <a href="">Resume writing services</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="Header__menu-list-item Header__submenu-container">
+                                <span class="Header__submenu-label">More</span>
+                                <ul class="Header__submenu list--clean">
+                                    <li class="Header__menu-list-item"><a href="about-us.html" rel="nofollow">About
+                                            us</a></li>
+                                    <li class="Header__menu-list-item"><a href="contact-us.html" rel="nofollow">Contact
+                                            us</a></li>
+                                    <li class="Header__menu-list-item"><a href="howitworks.html" rel="nofollow">How it
+                                            works</a></li>
+                                    <li class="Header__menu-list-item"><a href="">FAQ</a></li>
+                                    <li class="Header__menu-list-item"><a href="">Our services</a>
+                                    </li>
+                                    <li class="Header__menu-list-item"><a href="">Blog</a></li>
+                                </ul>
+                            </li>
+                            <li class="Header__menu-list-item Header__menu-order-block">
+                                <div class="Header__menu-order-block__phone">
+                                    <a href="tel:+1-855-332-6213"><span class="hidden-info"
+                                            data-title="1-855-332-6213"></span></a>
+                                    / <a href=""><span class="hidden-info" data-title=""></span></a>
+                                </div>
+                                <a class="btn btn--green-fill btn--with-arrow Header__menu-order-block__link"
+                                    rel="nofollow" href="/order.html">Order now</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER -->
+
+        <section class="section section-hero-home">
+            <div class="container">
+                <div class="section-hero-home__content">
+                    <h1 class="section__title">Top academic writers at your service 24/7</h1>
+                    <p class="section__subtitle">Each of our essay writers passes 3 rounds of tests to offer you
+                        original and quality paper even within 4 or 8 hours</p>
+                    <div class="section__buttons">
+                        <a href="/order.html" rel="nofollow" class="btn btn--green-fill btn--with-arrow">Order now</a>
+                        <a href="/inquiry.html" rel="nofollow" class="link--white">Get a free quote</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section section-calculator">
+            <div class="container">
+                <div class="section-calculator__calculator ">
+                    <h2 class="section-calculator__heading">Calculate the price of your order</h2>
+                    <p class="section-calculator__subheading">Enter your paper details and see how much it will cost to
+                        hire our professional academic writers.</p>
+                    <div class="Calculator" data-calc-mini data-calculator-default>
+                        <form name="" class="Calc" method="" action="" data-calculator-form>
+                            <select name="topcatId" style="display: none;" data-discipline-select></select>
+                            <div class="Calc__wrapper">
+                                <div class="Calc__cell Calc__cell--type-of-paper">
+                                    <div class="Calc__select select">
+                                        <select id="calc-type-of-paper" name="paperTypeId" data-academic-level-select>
+                                            <option value="2" selected="">Essay (any type)</option>
+                                        </select>
+                                        <label for="calc-type-of-paper" class="Calc__label">Type of paper</label>
+                                    </div>
+                                </div>
+
+                                <div class="Calc__cell Calc__cell--academic-level">
+                                    <div class="visible-in-mobile">
+                                        <div class="Calc__select select">
+                                            <select id="calc-academic-level" data-academic-level-select-mobile>
+                                                <option value="">Undergrad. (yrs 1-2)</option>
+                                            </select>
+                                            <label for="calc-academic-level" class="Calc__label">Academic level</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="Calc__cell Calc__cell--pages">
+                                    <label class="Calc__label">Pages <span class="CalcFull__label-item-words"
+                                            data-words-qty>550 words</span></label>
+                                    <span class="Calc__pages">
+                                        <label class="Calc__pages-btn CalcFull__pages-left" for="pageDecrease">
+                                            <button id="pageDecrease" type="button" data-minus-button
+                                                aria-label="decrease"></button>
+                                        </label>
+                                        <label class="Calc__pages-input" for="pages">
+                                            <input class="input" type="number" inputmode="numeric" id="pages"
+                                                name="pages" data-pages-input value="1">
+                                        </label>
+                                        <label class="Calc__pages-btn CalcFull__pages-right" for="pageIncrease">
+                                            <button id="pageIncrease" type="button" data-plus-button
+                                                aria-label="increase"></button>
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="Calc__total">
+                                    <div class="Calc__total-value">Price: <span data-total-price><span>$</span>0</span>
+                                    </div>
+                                </div>
+                                <div class="Calc__submit">
+                                    <button class="btn btn--green-fill" type="submit" data-submit-button>Continue to
+                                        order
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="section-calculator__info">
+                    <div class="section-calculator__info-col">
+                        <div class="h4 section-calculator__info-title">The price includes:</div>
+                        <ul class="list--clean list--check-green">
+                            <li>Free title page and bibliography</li>
+                            <li>Formatting according to your instructions</li>
+                            <li>Amendments to the finished paper if they are needed</li>
+                        </ul>
+                    </div>
+                    <div class="section-calculator__info-col">
+                        <div class="h4 section-calculator__info-title">What else you can get:</div>
+                        <ul class="list--clean list--check-green">
+                            <li>Choice of 3 categories of writers</li>
+                            <li>Copies of the sources in the bibliography</li>
+                            <li>Charts, images, and PowerPoint slides</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section section-guarantees ">
+            <div class="container">
+                <h2 class="h2 section__title">Our guarantees</h2>
+                <ul class="section-guarantees__list list--clean">
+
+                    <li class="section-guarantees__item ico__document--before" data-observed-bg>
+                        <div class="section-guarantees__item-title">Zero-plagiarism guarantee</div>
+                        <div class="section-guarantees__item-text">We write custom papers based on the instructions you
+                            give us, so we provide exclusively original content.</div>
+                    </li>
+
+
+                    <li class="section-guarantees__item ico__circle-write--before" data-observed-bg>
+                        <div class="section-guarantees__item-title">Free revisions</div>
+                        <div class="section-guarantees__item-text">Is there a problem with your paper? We’ll quickly fix
+                            it and send you the edited version.</div>
+                    </li>
+
+
+                    <li class="section-guarantees__item ico__save-money--before" data-observed-bg>
+                        <div class="section-guarantees__item-title">Money-back guarantee</div>
+                        <div class="section-guarantees__item-text">We make sure you get high-quality essay help, and if
+                            you don’t, we’ll give you a refund.</div>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="section section-samples">
+            <div class="container">
+                <div class="section-samples__content">
+                    <h2 class="section__title">Samples from our advanced writers</h2>
+                    <p class="section__subtitle">Check out some works from our best essay writers before your place an
+                        order. They
+                        will help you better understand what our service can do for you.</p>
+                    <ul class="section-samples__list list--clean">
+                        <li>
+                            <button type="button" class="section-samples__item active" data-sample-link="Nursing"
+                                data-observed-bg>Nursing</button>
+                        </li>
+                        <li>
+                            <button type="button" class="section-samples__item " data-sample-link="Business studies"
+                                data-observed-bg>Business studies</button>
+                        </li>
+                        <li>
+                            <button type="button" class="section-samples__item " data-sample-link="English 101"
+                                data-observed-bg>English 101</button>
+                        </li>
+                        <li>
+                            <button type="button" class="section-samples__item " data-sample-link="Education"
+                                data-observed-bg>Education</button>
+                        </li>
+                        <li>
+                            <button type="button" class="section-samples__item " data-sample-link="Psychology"
+                                data-observed-bg>Psychology</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="section-samples__viewer">
+                    <div class="sample show" data-sample="Nursing">
+                        <div class="sample__title">Houston and Kindred Hospital Case Study</div>
+                        <div class="sample__type">Case study</div>
+                        <div class="sample__description">A case study requires you to examine a particular phenomenon in
+                            a real-world context. The goal of this assignment is to describe and understand this
+                            situation, identify the key issues, and link them to relevant theoretical concepts.</div>
+                        <div class="sample__link">
+                            <a href="/samples/home-wcs-5188/2-Healthcare-Case-study-APA-proof.pdf"
+                                class="btn btn--green-fill" target="_blank" data-observed-bg>View this
+                                sample</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section section-banner section-banner-black">
+            <div class="container">
+                <div>
+                    <h2 class="section__title section-banner__title" data-observed-bg>Enjoy expert assistance with our
+                        pro essay writing service</h2>
+                </div>
+                <div class="section-banner__button">
+                    <a href="/order.html" rel="nofollow" class="btn btn--white-fill btn--with-arrow">Order now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-howitworks ">
+            <div class="container">
+                <h2 class="section__title">How it works</h2>
+                <p class="section__subtitle">Using our online essay writing service is very easy. You just have to
+                    follow these steps:</p>
+                <ol class="section-howitworks__list list--clean">
+
+                    <li>
+                        <div class="section-howitworks__item-title">Place your order</div>
+                        <div class="section-howitworks__item-text">First, give us your instructions and explain what
+                            type of academic writing help you need. Then, provide your contact details so that we can
+                            get in touch.</div>
+                    </li>
+
+
+                    <li>
+                        <div class="section-howitworks__item-title">Pay for your paper</div>
+                        <div class="section-howitworks__item-text">Enter your credit card details and follow the
+                            directions. We use data encryption and only work with trusted e-payment providers for your
+                            extra safety.</div>
+                    </li>
+
+
+                    <li>
+                        <div class="section-howitworks__item-title">Track your order</div>
+                        <div class="section-howitworks__item-text">While you wait for your paper to be ready, you can
+                            check out the status of your order, chat with your essay writer and ask our customer support
+                            for updates.</div>
+                    </li>
+
+
+                    <li>
+                        <div class="section-howitworks__item-title">Download the file</div>
+                        <div class="section-howitworks__item-text">We’ll send you a notification when your
+                            custom-written paper is ready. Check it out in your profile, approve the order, and download
+                            the file to your device.</div>
+                    </li>
+
+                </ol>
+                <div class="section-howitworks__btn">
+                    <a href="/order.html" rel="nofollow" class="btn btn--green-fill btn--with-arrow">To the order
+                        form</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-benefits ">
+            <div class="container">
+                <h2 class="section__title">Discover the benefits of our service</h2>
+                <p class="section__subtitle">The main reason to choose our professional essay writing services is that
+                    we aim to please even the most demanding customers. Here’s what we offer.</p>
+                <ul class="section-benefits__list list--clean columns columns--col-3">
+
+                    <li class="section-benefits__item ico__support--before" data-observed-bg>
+                        <div class="section-benefits__item-title">24/7 customer service</div>
+                        <div class="section-benefits__item-text">Our operators are always ready to help you if you have
+                            any questions.</div>
+                    </li>
+
+
+                    <li class="section-benefits__item ico__timer--before" data-observed-bg>
+                        <div class="section-benefits__item-title">Short deadlines</div>
+                        <div class="section-benefits__item-text">Our writing service can help you with urgent
+                            assignments in just 4 hours!</div>
+                    </li>
+
+
+                    <li class="section-benefits__item ico__pig--before" data-observed-bg>
+                        <div class="section-benefits__item-title">Flexible prices</div>
+                        <div class="section-benefits__item-text">Order in advance and get essay writing help at a lower
+                            price!</div>
+                    </li>
+
+
+                    <li class="section-benefits__item ico__confidentiality--before" data-observed-bg>
+                        <div class="section-benefits__item-title">Confidentiality</div>
+                        <div class="section-benefits__item-text">We don’t publicly disclose any information you share
+                            with us.</div>
+                    </li>
+
+
+                    <li class="section-benefits__item ico__note-and-pen--before" data-observed-bg>
+                        <div class="section-benefits__item-title">Free formatting</div>
+                        <div class="section-benefits__item-text">We’ll make your paper look exactly how you want it to.
+                        </div>
+                    </li>
+
+
+                    <li class="section-benefits__item ico__lists--before" data-observed-bg>
+                        <div class="section-benefits__item-title">75+ disciplines</div>
+                        <div class="section-benefits__item-text">Our paper writers cover an impressive range of
+                            subjects.</div>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="section section-banner section-banner-green">
+            <div class="container">
+                <div>
+                    <h2 class="section__title section-banner__title" data-observed-bg>Get all the writing help you need
+                        with our professional essay service</h2>
+                </div>
+                <div class="section-banner__button">
+                    <a href="/order.html" rel="nofollow" class="btn btn--white-fill btn--with-arrow">Order now</a>
+                </div>
+            </div>
+        </section>
+        <!-- FOOTER -->
+        <footer class="Footer" role="contentinfo">
+            <div class="container">
+
+                <div class="Footer__menu Footer__menu--contacts">
+                    <p class="Footer__menu__heading">Contacts</p>
+                    <ul class="Footer__menu__list list--clean">
+                        <li class="Footer__menu--contacts-phone"><a href="#">Ville Sally, USA</a></li>
+                        <li class="Footer_menu--contact-phone"><a href="#">+101 808-164-0705</a></li>
+                        <li class="Footer__menu--contacts-chat">
+                            <style>
+                                i {
+                                    padding: 5px 10px;
+                                }
+                            </style>
+                            <i class="fab fa-facebook-f"></i>
+                            <i class="fab fa-twitter"></i>
+                            <i class="fab fa-instagram"></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="Footer__menu Footer__menu--terms">
+                    <p class="Footer__menu__heading">Terms</p>
+                    <ul class="Footer__menu__list list--clean">
+                        <li><a href="" rel="nofollow">Privacy policy</a></li>
+                        <li><a href="" rel="nofollow">Progressive Delivery</a></li>
+                        <li><a href="" rel="nofollow">Terms and conditions</a></li>
+                        <li><a href="" rel="nofollow">Cookie policy</a></li>
+                        <li><a href="" rel="nofollow">Plagiarism-free guarantee</a></li>
+                        <li><a href="" rel="nofollow">Money back guarantee</a></li>
+                        <li><a href="" rel="nofollow">Revision policy</a></li>
+                        <li><a href="" rel="nofollow">Notice on social responsibility</a></li>
+                    </ul>
+                </div>
+
+                <div class="Footer__menu Footer__menu--accept">
+                    <p class="Footer__menu__heading Footer__menu__heading-accept">Payment Methods</p>
+                    <div class="Footer__menu__payments">
+                        <img src="https://www.transparentpng.com/thumb/credit-card/zQPbOg-visa-mastercard-american-express-discover-credit-card-picture.png"
+                            alt="visa, mastercard, american express, discover credit card picture @transparentpng.com"
+                            width="229">
+                        <!-- <img src="" width="229" height="35" alt="" loading="lazy"> -->
+                    </div>
+                </div>
+                <div class="Footer__separator"></div>
+            </div>
+        </footer>
+        <!-- END FOOTER -->
+    </div><!-- page-wrapper -->
+    <script src="https://www.advancedwriters.com/js/communication-panel-3c247bbb.4c863a56ffe54e521b60.js"></script>
+    <!-- <script src="assets/js/home1.js"></script> -->
+    <!-- <script src="assets/js/home2.js"></script> -->
+    <script src="https://www.advancedwriters.com/js/communication-panel-9e104069.e653bcd61e13c28ad24f.js"></script>
+    <script src="https://www.advancedwriters.com/js/home-d5ef20ee.c277c59b994b53662eeb.js"></script>
+    <script>!function (a) { "use strict"; var b = function (b, c, d) { function e(a) { return h.body ? a() : void setTimeout(function () { e(a) }) } function f() { i.addEventListener && i.removeEventListener("load", f), i.media = d || "all" } var g, h = a.document, i = h.createElement("link"); if (c) g = c; else { var j = (h.body || h.getElementsByTagName("head")[0]).childNodes; g = j[j.length - 1] } var k = h.styleSheets; i.rel = "stylesheet", i.href = b, i.media = "only x", e(function () { g.parentNode.insertBefore(i, c ? g : g.nextSibling) }); var l = function (a) { for (var b = i.href, c = k.length; c--;)if (k[c].href === b) return a(); setTimeout(function () { l(a) }) }; return i.addEventListener && i.addEventListener("load", f), i.onloadcssdefined = l, l(f), i }; "undefined" != typeof exports ? exports.loadCSS = b : a.loadCSS = b }("undefined" != typeof global ? global : this); !function (a) { if (a.loadCSS) { var b = loadCSS.relpreload = {}; if (b.support = function () { try { return a.document.createElement("link").relList.supports("preload") } catch (b) { return !1 } }, b.poly = function () { for (var b = a.document.getElementsByTagName("link"), c = 0; c < b.length; c++) { var d = b[c]; "preload" === d.rel && "style" === d.getAttribute("as") && (a.loadCSS(d.href, d, d.getAttribute("media")), d.rel = null) } }, !b.support()) { b.poly(); var c = a.setInterval(b.poly, 300); a.addEventListener && a.addEventListener("load", function () { b.poly(), a.clearInterval(c) }), a.attachEvent && a.attachEvent("onload", function () { a.clearInterval(c) }) } } }(this);</script>
+</body>
+
+</html>
